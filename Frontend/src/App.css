@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+  justify-content: center;
+
+}
+
+
+
+.login-control {
+  color: black;
+  background-color:transparent; 
+  border: none;                   
+  border-bottom: 2px solid #c4c2c2;  
+  border-radius: 0;     
+  outline: none;   
+  width: 80%;      
+
+            
+}
+.login-control:focus {
+  border-bottom-color: #979ea1;   
+  box-shadow: none;               
+}
+#background-image {
+  background-image: url('../src/assets/images/Mobile\ login\ Customizable\ Cartoon\ Illustrations\ _\ Bro\ Style.jpeg'); 
+  background-size: contain;       
+  background-position:center;
+
+  background-repeat: no-repeat; 
+  mix-blend-mode: multiply;
+  width: 100%;                  
+  height: 50vh;              
+}
+
+
+
+#authpage{
+  border-radius: 10px;
+  background-color: #ffffff;
+  color:rgb(0, 0, 0);
+  box-shadow: 1px 5px 5px rgb(255, 255, 255);
+  padding: 10px;
+}
+
