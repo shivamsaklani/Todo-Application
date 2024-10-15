@@ -1,8 +1,7 @@
 import axios from "axios";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Button, Container, FormControl, FormGroup, FormText, Table } from "react-bootstrap";
-import {  useNavigate } from "react-router-dom";
+import { Button, Container, FormCheck, FormControl, FormGroup, FormText, Table } from "react-bootstrap";
 export default function UserDashboard(){
     const key=localStorage.getItem('key');
   
@@ -39,7 +38,7 @@ const addTodo=useRef();
             await axios.post("http://localhost:3001/addtodo",{
                 
                     'task':addTodo.current.value,
-                    'don':false
+                    'done':false
                 },{
                 headers:{
                     'token':key
@@ -56,15 +55,35 @@ const addTodo=useRef();
             addTodos()
         }
     }
-   const deletetodo=async ()=>{
-    await axios.delete("http://localhost:3001/deletetodo",{
+    const deletetodo= async (id)=>{
 
-    },{
-        headers:{
-            token:key
-        }
-    })
+       
+   
+            await axios.delete(`http://localhost:3001/deletetodo/${id}`,{
+                headers:{
+                    'token':key
+                }
+            }).then(()=>{
+                settodos((oldTodos) => oldTodos.filter(todo => todo.id !== id));
+                setrefresh(true);
+             
+            }
+            )
+    } 
+    const toggle= async (id)=>{
+        const todo = todos.filter(todo => todo.id === id);
+        await axios.post(`http://localhost:3001/update/${id}`,{
+            title:todo.title,
+            done:!(todo.done)
+        },{
+            headers:{
+                'token':key
+            }
+        }).then((res)=>{
+           console.log(res.data.message);
+           setrefresh(false);
 
+        })
     }
   
    
@@ -93,7 +112,7 @@ const addTodo=useRef();
               <Table  className="table">
                 <thead>
                     <tr>
-                   
+                        <th></th>
                         <th>Sn.no</th>
                         <th>Todos</th>
                         <th>Date</th>
@@ -109,8 +128,10 @@ const addTodo=useRef();
                     
               {(todos)?todos.map((todo,index)  =>( 
                 
-                    <tr key={todo.id}>
-                       
+                    <tr key={todo._id}>
+                       <td>
+                        <FormCheck type="checkbox" onChange={()=>toggle(todo._id)} checked={todo.done}/>
+                       </td>
                         <td >
                               {index+1}
                         </td>
@@ -125,7 +146,7 @@ const addTodo=useRef();
                         
                          </td>
                          <td>
-                            <Button className="rounded-circle btn-danger" onClick={deletetodo}><span>X</span></Button>
+                            <Button className="rounded-circle btn-danger" onClick={()=>deletetodo(todo._id)}><span>X</span></Button>
                          </td>
                         
                      

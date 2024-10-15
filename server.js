@@ -148,6 +148,30 @@ res.json({
 
 
 })
+//updates Todos
+app.post("/update/:id",auth,async function(req,res) {
+  const {id}=req.params;
+  const userid=req.userId;
+  let mesg='';
+  try {
+    const result= await TodoModel.updateOne({
+      _id:id,
+      userId:userid
+    },{
+      $set: {title : req.body.title,done:req.body.done}
+    })
+    if(result.matchedCount==1){
+      mesg="Updated Todo"
+    }
+  }
+  catch(e){
+    mesg=`Sorry failed due to ${e}`
+  }
+  return res.json({
+    message:mesg
+  })
+  
+})
 
 
 //Deleting Todos
@@ -155,6 +179,7 @@ app.delete("/deletetodo/:id",auth,async function(req,res){
   const {id}=req.params;
   const userid=req.userId;
   let mesg='';
+
   try {
    
    const result= await TodoModel.deleteOne({
@@ -163,14 +188,14 @@ app.delete("/deletetodo/:id",auth,async function(req,res){
     })
     if(result.deletedCount===0){
       mesg =" UnAuthorized User";
-      return res.status(404).json({ message: mesg });
+      return res.status(404).json({ message: mesg ,userid:id});
     }
     mesg="todo deleted";
 
    
 
   } catch (e) {
-    mesg=`Sorry failed due to ${id}`
+    mesg=`Sorry failed due to ${e}`
     
   }
   return res.json({
