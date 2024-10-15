@@ -24,7 +24,7 @@ function Signed(props){
 function CustomHeader() {
 
   const [login,setlogin]=useRecoilState(Glogin);
- let user=useRecoilState(User);
+ let [user,setUser]=useRecoilState(User);
   function logout(){
     setUser('');
     setlogin(false);

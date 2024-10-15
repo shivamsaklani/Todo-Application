@@ -16,7 +16,7 @@ export default function Homepage() {
             <div className="flex-fill">
             
   
-            <Outlet/>
+         <Outlet/>
             <BrowserRouter> 
         <Routes>
         <Route path="/" element={<Outlet/>}>

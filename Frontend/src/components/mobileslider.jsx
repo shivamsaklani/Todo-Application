@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button, CardFooter, Nav, NavItem, NavLink, Offcanvas, OffcanvasBody, OffcanvasHeader } from "react-bootstrap";
+import { Button, CardFooter, Nav, NavItem, NavLink, Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasToggling } from "react-bootstrap";
 import { Signed } from "./Header";
 import { useRecoilState } from "recoil";
 import { Glogin, User } from "../App";
-
+import { GrClose } from "react-icons/gr";
 export default function Mobileslider() {
     const [show, setshow] = useState(false);
     const closeSlider = () => setshow(false);
@@ -14,6 +14,7 @@ export default function Mobileslider() {
    function logout(){
      
      setlogin(false);
+     closeSlider();
      localStorage.removeItem('key');
      
      
@@ -25,7 +26,11 @@ export default function Mobileslider() {
         <div className="justify-content-start align-items-start">
             <Button variant="dark" className="mr-3 d-sm d-md-none" onClick={openSlider}>☰</Button>
             <Offcanvas show={show} className="bg-secondary" onHide={closeSlider} placement="start" >
-                <OffcanvasHeader className=" justify-content-center bg-dark fs-3 font-monospace"><Signed  user={user} /></OffcanvasHeader>
+            <OffcanvasHeader className="justify-content-start bg-dark fs-3 font-monospace">
+  <Signed user={user} />
+  <GrClose className="text-light ms-auto" onClick={closeSlider} />
+</OffcanvasHeader>
+
                 <OffcanvasBody className="justify-content-center align-self-center">
 
                 <Nav className="flex-column align-self-start align-items-center w-100">
