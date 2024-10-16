@@ -72,16 +72,16 @@ const addTodo=useRef();
     } 
     const toggle= async (id)=>{
         const todo = todos.filter(todo => todo.id === id);
+        let check=!todo.done;
         await axios.post(`http://localhost:3001/update/${id}`,{
-            title:todo.title,
+            title:check,
             done:!(todo.done)
         },{
             headers:{
                 'token':key
             }
-        }).then((res)=>{
-           console.log(res.data.message);
-           setrefresh(false);
+        }).then(()=>{
+           setrefresh(true);
 
         })
     }

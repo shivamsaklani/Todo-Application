@@ -7,7 +7,7 @@ export default function CustomFooter(){
         <Container className="footer-container p-4 bg-secondary w-100">
            <Row>
                 <Col>
-                Home
+                
                 </Col>
             </Row>
 

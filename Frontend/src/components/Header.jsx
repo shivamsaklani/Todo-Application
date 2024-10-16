@@ -5,7 +5,7 @@ import { Button, NavbarBrand, NavLink } from 'react-bootstrap';
 import NavbarText from 'react-bootstrap/NavbarText';
 import  Navbar  from 'react-bootstrap/Navbar';
 import Mobileslider from './mobileslider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {Glogin,User} from '../App';
 import { useRecoilState } from 'recoil';
 
@@ -22,7 +22,6 @@ function Signed(props){
  
 
 function CustomHeader() {
-
   const [login,setlogin]=useRecoilState(Glogin);
  let [user,setUser]=useRecoilState(User);
   function logout(){
@@ -39,8 +38,7 @@ function CustomHeader() {
     
       <Container className='justify-content-between'>
       {login && <Mobileslider/>} 
-        <NavbarBrand className='text-white'>Todo Application </NavbarBrand>
-        
+        <Link to='/' className='text-white'>Todo Application </Link>
         <NavbarText className='justify-content-center align-items-center fs-6 text-light btn btn-outline-info'><NavLink className='shadow-sm text-light ' href="/login">Login</NavLink></NavbarText>
         
         {login &&
