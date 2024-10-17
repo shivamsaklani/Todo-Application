@@ -22,12 +22,14 @@ function Signed(props){
  
 
 function CustomHeader() {
-  const [login,setlogin]=useRecoilState(Glogin);
+  
  let [user,setUser]=useRecoilState(User);
+  const islogin=localStorage.getItem('user');
   function logout(){
     setUser('');
-    setlogin(false);
+    localStorage.setItem('user',false);
     localStorage.removeItem('key');
+    localStorage.removeItem('user');
     
     
     
@@ -37,11 +39,11 @@ function CustomHeader() {
     <Navbar bg='dark' sticky='top' expand='lg' className="align-items-center justify-content-between">
     
       <Container className='justify-content-between'>
-      {login && <Mobileslider/>} 
+      {islogin && <Mobileslider/>} 
         <Link to='/' className='text-white'>Todo Application </Link>
         <NavbarText className='justify-content-center align-items-center fs-6 text-light btn btn-outline-info'><NavLink className='shadow-sm text-light ' href="/login">Login</NavLink></NavbarText>
         
-        {login &&
+        {islogin &&
         <NavbarText className='d-none d-lg-block d-xl-block'><Signed  user={user}/>
         <Button className='btn btn-danger' onClick={logout}> Logout </Button></NavbarText>  }
 

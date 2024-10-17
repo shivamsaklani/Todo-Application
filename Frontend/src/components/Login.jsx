@@ -24,13 +24,15 @@ function Loginform(){
         if(!response.error){
           setlogin(true);
           user=email;
-        }
-        let token;
+          let token;
      
         
           token = response.headers['token'];
       
           localStorage.setItem('key', token);
+          localStorage.setItem('user',login);
+        }
+        
 
       
        

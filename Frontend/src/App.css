@@ -5,14 +5,14 @@
 }
 #home-bg{
   background-color: antiquewhite;
+  height: 100vh;
 }
 #home-image{
-  height: auto;
-
-  background-image: url("../src/assets/images/background.jpeg");
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position:calc(50);
+ background-image: url('../src/assets/images/background.jpeg');
 }
-
-
 
 
 .login-control {

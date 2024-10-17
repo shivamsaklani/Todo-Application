@@ -8,14 +8,13 @@ export default function Mobileslider() {
     const [show, setshow] = useState(false);
     const closeSlider = () => setshow(false);
     const openSlider = () => setshow(true);
-
-  const [login,setlogin]=useRecoilState(Glogin);
   let user=useRecoilState(User);
    function logout(){
      
-     setlogin(false);
+   
      closeSlider();
      localStorage.removeItem('key');
+     localStorage.setItem('user',false);
      
      
      
@@ -35,7 +34,7 @@ export default function Mobileslider() {
 
                 <Nav className="flex-column align-self-start align-items-center w-100">
                     <NavItem className=" text-light w-100 mb-5 ">
-                    <NavLink  href="/">Home</NavLink>
+                    <NavLink  href="/home">Home</NavLink>
                             
                     </NavItem>
                     <NavItem className="list-group-item list-group-item-action canvas-items text-light w-100 mb-5 ">
