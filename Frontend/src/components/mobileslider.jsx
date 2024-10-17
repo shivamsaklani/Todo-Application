@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, CardFooter, Nav, NavItem, NavLink, Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasToggling } from "react-bootstrap";
 import { Signed } from "./Header";
 import { useRecoilState } from "recoil";
-import { Glogin, User } from "../App";
 import { GrClose } from "react-icons/gr";
 export default function Mobileslider() {
     const [show, setshow] = useState(false);
