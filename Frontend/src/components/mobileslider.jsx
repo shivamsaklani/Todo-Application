@@ -3,6 +3,7 @@ import { Button, CardFooter, Nav, NavItem, NavLink, Offcanvas, OffcanvasBody, Of
 import { Signed } from "./Header";
 import { useRecoilState } from "recoil";
 import { GrClose } from "react-icons/gr";
+import { User } from "../App";
 export default function Mobileslider() {
     const [show, setshow] = useState(false);
     const closeSlider = () => setshow(false);
